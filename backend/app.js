@@ -13,13 +13,18 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
 	cors({
-		origin: [
-			"http://localhost:3000",
-		],
+		origin: "*",
 		credentials: true,
 	})
 );
 
+app.use(function(req, res, next) {
+	res.header(
+	  'Access-Control-Allow-Headers',
+	  'Origin, X-Requested-With, Content-Type, Accept'
+	);
+	next();
+});
 
 mongoose.connect(process.env.CONNECT, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (e) => {
 	console.log(e ? e : "Connected successfully to database");
