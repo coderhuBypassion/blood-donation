@@ -18,13 +18,12 @@ app.use(
 	})
 );
 
-app.use(function(req, res, next) {
+res.header('Access-Control-Allow-Origin', 'https://blood-donation-backend-alpha.vercel.app', 'https://blood-donation-main.vercel.app');
 	res.header(
 	  'Access-Control-Allow-Headers',
 	  'Origin, X-Requested-With, Content-Type, Accept'
 	);
 	next();
-});
 
 mongoose.connect(process.env.CONNECT, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (e) => {
 	console.log(e ? e : "Connected successfully to database");
